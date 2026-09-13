@@ -1,0 +1,25 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+
+# Build output
+build/
+out/
+target/
+dist/
+
+# Logs
+*.log
+logs/
+
+# Env / secrets
+.env
+*.local
+*.properties
+application-secret*
