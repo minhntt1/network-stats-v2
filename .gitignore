@@ -10,6 +10,7 @@ Thumbs.db
 
 # Build output
 build/
+.gradle/
 out/
 target/
 dist/
