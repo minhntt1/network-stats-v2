@@ -5,7 +5,8 @@ Thumbs.db
 # IDE
 .idea/
 *.iml
-.vscode/
+.vscode/*
+!.vscode/settings.json
 *.code-workspace
 
 # Build output
