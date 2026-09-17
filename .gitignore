@@ -10,6 +10,7 @@ Thumbs.db
 
 # Build output
 build/
+.gradle/
 out/
 target/
 dist/
@@ -21,5 +22,4 @@ logs/
 # Env / secrets
 .env
 *.local
-*.properties
 application-secret*
