@@ -11,3 +11,9 @@ This repository is currently a blank slate — source code will be added as the 
 - **Branch flow**: `feature branch → PR → dev → main`
 
 > Both `main` and `dev` are protected: direct pushes are rejected, so all changes must go through a pull request.
+
+## Documentation
+
+| Document | Description |
+|---|---|
+| [Project Structure](docs/project-structure.md) | Directory layout, module responsibilities, and build commands |
