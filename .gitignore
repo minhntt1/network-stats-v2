@@ -22,6 +22,4 @@ logs/
 # Env / secrets
 .env
 *.local
-*.properties
-!gradle/wrapper/gradle-wrapper.properties
 application-secret*
