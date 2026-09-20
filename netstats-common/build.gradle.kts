@@ -40,4 +40,10 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testAnnotationProcessor("org.projectlombok:lombok")
+
+    // Testcontainers (MySQL) for integration tests against a real MySQL
+    // Source: https://mvnrepository.com/artifact/org.testcontainers/mysql
+    testImplementation("org.testcontainers:mysql:1.21.4")
+    // JUnit 5 integration (starts/stops containers, @Testcontainers/@Container)
+    testImplementation("org.testcontainers:junit-jupiter:1.21.4")
 }

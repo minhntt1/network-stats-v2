@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.home.netstats.v2.common.stats.mapper.DeviceWlanConnectionsFactMapper">
+
+
+    <!-- countByDeviceKey --> 
+
+    <select id="countByDeviceKey">
+        select count(*)
+        from device_wlan_connections_fact
+        where device_key = #{deviceKey} 
+    </select>    
+
+    <!-- filterByDeviceKey --> 
+
+    <select id="filterByDeviceKey">
+        with select_conn_w_limit as(
+            select
+
+            dwcf.*
+
+            from device_wlan_connections_fact dwcf
+
+            where dwcf.device_key = #{deviceDim.deviceKey}
+
+            order by dwcf.device_key, dwcf.event_timestamp desc  -- make the query full utilize the index
+
+            limit #{limit}, #{offset} 
+        )
+        select
+
+        dd.date,
+        td.time,
+        dd1.device_name client_name,
+        dd1.device_mac client_mac,
+        id.ipv4 client_ipv4,
+        ad.ap_mac,
+        ad.ap_name,
+        ifd.iface_name,
+        ifd.iface_phy_name,
+        ifd.iface_mac,
+        vd.vendor_name client_vendor,
+        vd1.vendor_name ap_vendor,
+        csd.status connection_status
+
+        from select_conn_w_limit sl
+
+        join date_dim dd using (date_key)
+
+        join time_dim td using (time_key)
+
+        join device_dim dd1 using (device_key)
+
+        join ip_dim id on id.ip_key = sl.device_ip_key
+
+        join ap_dim ad using (ap_key)
+
+        join gw_iface_dim ifd using (iface_key)
+
+        join vendor_dim vd using (vendor_key)
+
+        join vendor_dim vd1 on vd1.vendor_key = sl.ap_vendor_key
+
+        join connection_status_dim csd on csd.id = sl.cnt_status_key
+
+        order by sl.event_timestamp desc;
+    </select>
+
+</mapper>
