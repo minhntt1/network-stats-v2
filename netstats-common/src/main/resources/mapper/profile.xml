@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.home.netstats.v2.common.profile.mapper.DeviceProfileMapper">
+    <select id="findByClassProfileData">
+        select *
+        from device_auth_data_web
+        where data_class = #{dataClass}
+    </select>
+
+    <select id="findAllWithLimitOffset">
+        select *
+        from device_auth_data_web
+        limit #{limit}
+        offset #{offset}
+    </select>
+
+    <select id="countAllRecords">
+        select count(*)
+        from device_auth_data_web
+    </select>
+
+    <!-- updateProfile --> 
+
+    <update id="updateProfile">
+    
+        update device_auth_data_web
+        set 
+        data_class = #{dataClass},
+        data = #{data},
+        temp_data = #{tempData}
+        
+        <if test="id != null">
+            where id = #{id}
+        </if>
+
+        <if test="id == null">
+            where id = -1
+        </if>
+        
+    </update>
+
+    <!-- createProfile --> 
+
+    <insert id="createProfile">
+        insert into device_auth_data_web(data_class, data, temp_data)
+        values (#{dataClass}, #{data}, #{tempData})
+    </insert>
+
+    <!-- deleteProfile --> 
+
+    <delete id="deleteProfile">
+        
+        delete 
+        from device_auth_data_web
+
+        <if test="id != null">
+            where id = #{id}
+        </if>
+
+        <if test="id == null">
+            where id = -1
+        </if>
+    </delete>
+
+</mapper>
