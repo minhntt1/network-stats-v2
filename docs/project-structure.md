@@ -33,13 +33,12 @@ Core ingestion / analysis workers that poll target devices and persist normalize
 Executable Spring Boot application (base package `com.home.netstats.v2.web`).
 UI to query stored data and manage device profiles used by the workers.
 
+## Testing
+
+See [Testing](testing.md) for how to run the integration tests (Testcontainers,
+MySQL, prerequisites).
+
 ## Build
-
-Test command:
-
-```bash
-./gradlew clean test
-```
 
 Full build (skips tests):
 
